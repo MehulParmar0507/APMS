@@ -1,0 +1,36 @@
+<nav aria-label="breadcrumb">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="/">Home</a></li>
+    <li class="breadcrumb-item active" aria-current="page">View Project</li>
+  </ol>
+</nav>
+
+<div class="container col-12">
+  <br>
+  
+  <div class="row">
+    {{#each rows}}
+    <div class="col-12">
+      <table class="table">
+        <thead>
+          <tr>
+            <th>Student Name</th>
+            <th>Gender</th>
+            <th>Phone number</th>
+            <th>Email id</th>
+            <th>Student Year</th>
+          </tr> 
+        </thead>
+        <tbody>
+          <tr>
+            <td>{{this.Student_name}}</td>
+            <td>{{this.Student_Gender}}</td>
+            <td>{{this.Student_Phone_No}}</td>
+            <td>{{this.Student_Email}}</td>
+            <td>{{this.Student_Year}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+   {{/each}}
+</div>

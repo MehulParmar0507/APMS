@@ -1,0 +1,27 @@
+
+<div class="container" id="LoginForm">
+    <img src="https://img.hotimg.com/WhatsApp-Image-2024-02-23-at-8.01.36-PM.jpeg" alt="WhatsApp-Image-2024-02-23-at-8.01.36-PM.jpeg" border="0" />
+    <br><br><br><br><br><br>
+    <div class="offset-7 col-4 align-self-center">
+        <form method="POST" action="/dologin">
+            <div class="form-group col">
+                <label for="exampleInputEmail1" class="LoginText">Email address</label>
+                <input type="email" name="email" value="{{this.email}}" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
+                    placeholder="Enter email">
+                <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
+                    else.</small>
+            </div>
+            <div class="form-group col">
+                <label for="exampleInputPassword1" class="LoginText">Password</label>
+                <input type="password" name="password" value="{{this.password}}" class="form-control" id="exampleInputPassword1" placeholder="Password">
+            </div>
+            
+            <br>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+        <br>
+        {{#if alert}}
+        <div class="alert alert-danger" role="alert">{{alert}}</div>
+        {{/if}}
+    </div>
+</div>
