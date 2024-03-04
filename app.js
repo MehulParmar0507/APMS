@@ -22,7 +22,7 @@ app.use(express.json()); // New
 app.use(express.static('public'));
 
 // Templating Engine
-app.engine('hbs', exphbs( {extname: '.hbs' }));
+app.engine('.hbs', exphbs.engine( {extname: '.hbs',defaultLayout:"main" }));
 app.set('view engine', 'hbs');
 
 // Connection Pool
