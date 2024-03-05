@@ -1,5 +1,5 @@
 const mysql = require('mysql');
-const moment = require('moment');
+const moment = require('moment')
 
 // Connection Pool
 let connection = mysql.createConnection({
@@ -218,25 +218,31 @@ exports.deleteproject = (req, res) => {
 
 // Edit user
 exports.addmembers = (req, res) => {
-  const { id, stdid, department } = req.body;
-  console.log(req.body)
-  connection.query('select * from Student_Details where Student_id = ? ', [stdid], (err, rows) => {
-    const {Student_id,Student_name,Student_Gender,Student_Phone_No,Student_Email,Student_Year} = rows[0];
-    console.log(rows)
-    if (!err) {
-      connection.query('INSERT INTO Team_Details SET project_id = ?, student_name = ?,Student_Gender = ?,Student_Phone_No = ?,Student_Email = ?,Student_Year = ?, department = ?, S_ID = ?', 
-      [id,Student_name,Student_Gender,Student_Phone_No,Student_Email,Student_Year,department,Student_id], (errr, rowss) => {
-        if (!errr) {
-          res.redirect('/viewproject/'+id);
-        } else {
-          console.log(errr);
-        }
-      });
-    } else {
-      console.log(err);
+  const { studentName, department } = req.body;
+  const projectId = req.params.id; // Assuming project ID is available in the URL parameters
+
+  // Check if all required fields are present
+  if (!projectId || !studentName || !department) {
+    return res.status(400).send('Bad Request: Missing required fields');
+  }
+
+  // Insert the student's name and department into the database
+  connection.query(
+    'INSERT INTO Team_Details (project_id, student_name, department) VALUES (?, ?, ?)',
+    [projectId, studentName, department],
+    (err, result) => {
+      if (err) {
+        console.error('Error inserting student details:', err);
+        return res.status(500).send('Internal Server Error');
+      }
+      
+      // Redirect or render a success page if needed
+      res.redirect(`/viewproject/${projectId}`);
     }
-  });
-}
+  );
+};
+
+
 
 exports.addmember = (req, res) => {
   connection.query('SELECT * FROM Team_Details WHERE id = ?', [req.params.id], (err, rows) => {
