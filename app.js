@@ -9,6 +9,11 @@ require('dotenv').config();
 const app = express();
 const port = process.env.PORT || 5000;
 
+//Routes based on different roles
+const adminRoutes = require('./server/routes/user');
+const studentRoutes = require('./server/routes/Student');
+const guideRoutes = require('./server/routes/Guide');
+
 // Parsing middleware
 // Parse application/x-www-form-urlencoded
 // app.use(bodyParser.urlencoded({ extended: false }));
@@ -35,7 +40,7 @@ let connection = mysql.createConnection({
 });
  
 
-const routes = require('./server/routes/user');
-app.use('/', routes);
+//const routes = require('./server/routes/user');
+app.use('/', adminRoutes);
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
