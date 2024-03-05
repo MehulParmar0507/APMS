@@ -1,1 +1,2 @@
 node_modules
+npm i body-parser dotenv express express-handlebars mysql mysql2

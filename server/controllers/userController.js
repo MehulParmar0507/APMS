@@ -1,4 +1,5 @@
 const mysql = require('mysql');
+const moment = require('moment');
 
 // Connection Pool
 let connection = mysql.createConnection({
@@ -13,6 +14,11 @@ exports.view = (req, res) => {
   
   connection.query('SELECT * FROM Project_Details', (err, rows) => {
     if (!err) {
+      // Format dates before passing to the template
+      rows.forEach(row => {
+        row.Project_Date = moment(row.Project_Date).format('DD MMM YYYY');
+      });
+      
       let removedUser = req.query.removed;
       res.render('home', { rows, removedUser });
     } else {
@@ -27,8 +33,12 @@ exports.view = (req, res) => {
 exports.views = (req, res) => {
   
   connection.query('SELECT DISTINCT id  FROM result ORDER BY id LIMIT 5', (err, rows) => {
-    
     if (!err) {
+      // Format dates before passing to the template
+      rows.forEach(row => {
+        row.Project_Date = moment(row.Project_Date).format('DD MMM YYYY');
+      });
+      
       let removedUser = req.query.removed;
       res.render('result', { rows, removedUser });
     } else {
@@ -251,16 +261,30 @@ exports.login = (req, res) => {
 exports.viewall = (req, res) => {
   connection.query('SELECT * FROM Project_Details WHERE Project_id = ?', [req.params.id], (err, rows) => {
     if (!err) {
+      // Format dates before passing to the template
+      rows.forEach(row => {
+        row.Project_Date = moment(row.Project_Date).format('DD MMM YYYY');
+      });
+
       const id = { id : rows[0].Project_id };
       connection.query('SELECT * FROM Team_Details WHERE project_id = ?', [req.params.id], (err, tdrow) => {
-        
-        console.log('The data from student_details table: \n', tdrow);
-        res.render('view-user', { rows , id, tdrow});
-      })
+        if (!err) {
+          // Format dates in the tdrow data as well, if necessary
+          tdrow.forEach(row => {
+            // Assuming there's a Project_Date field in Team_Details
+            row.Project_Date = moment(row.Project_Date).format('DD MMM YYYY');
+          });
+
+          res.render('view-user', { rows , id, tdrow });
+        } else {
+          console.log(err);
+          res.status(500).send('Internal Server Error');
+        }
+      });
     } else {
       console.log(err);
+      res.status(500).send('Internal Server Error');
     }
-    console.log('The data from student_details table: \n', rows);
   });
 }
 

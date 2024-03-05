@@ -12,31 +12,27 @@
     {{#each rows}}
     <div class="col-6">
       <table class="table">
-        <thead>
+        <tbody>
           <tr>
-            <th scope="col">Project Name</th>
-            <th class="fw-normal">{{this.project_name}}</th>
+            <th scope="row">Project Name:</th>
+            <td>{{this.project_name}}</td>
           </tr> 
-        </thead>
-      </table>
-      <table class="table">
-        <thead>
           <tr>
-            <th scope="col">Project Link</th>
-            <th class="fw-normal">{{this.Project_Link}}</th>
-          </tr> 
-        </thead>
-      </table>
-      <table class="table">
-        <thead>
+            <th scope="row">Project Link:</th>
+            <td>{{this.Project_Link}}</td>
+          </tr>
           <tr>
-            <th scope="col">Project Guide</th>
-            <th class="fw-normal">{{this.Project_Guide}}</th>
-          </tr> 
-        </thead>
+            <th scope="row">Project Guide:</th>
+            <td>{{this.Project_Guide}}</td>
+          </tr>
+          <tr>
+            <th scope="row">Project Date:</th>
+            <td>{{this.Project_Date}}</td>
+          </tr>
+        </tbody>
       </table>
     </div>
-   {{/each}}
+    {{/each}}
     
     <div class="col-6">
       <table class="table">
@@ -60,6 +56,4 @@
       <a href="/addmembers/{{this.id.id}}" class="btn btn-primary">Add Members</a>
     </div>
   </div>
-  
-
 </div>

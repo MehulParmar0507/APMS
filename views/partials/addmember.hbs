@@ -1,24 +1,30 @@
-<input type="text" class="form-control" id="floatingInput" value="{{id}}" placeholder="Project Id" name="id"
-        readonly hidden>
-<div class="col-6">
-    <label>Student Name : </label>
-    <select class="form-select" name="stdid" aria-label="Student Name">
-        {{#each stdde}}
-        <option value="{{this.Student_id}}" >{{this.Student_name}}</option>
-        {{/each}}
-    </select>
-</div>
-<div class="col-6">
-    <label>Departments : </label>
-    <select name="department" class="form-select">
-        <option value="CS">CS</option>
-        <option value="IT">IT</option>
-        <option value="Mechanical">Mechanical</option>
-        <option value="Civil">Civil</option>
-        <option value="Electrical">Electrical</option>
-    </select>
+<div class="row">
+    <div class="col-md-6">
+        <div class="form-group">
+            <br>
+            <label for="studentName">Student Name:</label>
+            <input type="text" class="form-control" id="studentName" placeholder="Enter Your Name">
+        </div>
+    </div>
+    <div class="col-md-6">
+        <div class="form-group">
+            <br>
+            
+            <label for="department">Departments:</label>
+           <select name="department" id="department" class="form-select">
+    <option value="" disabled selected style="display: none;">Select</option>
+    <option value="CS">CS</option>
+    <option value="IT">IT</option>
+    <option value="Mechanical">Mechanical</option>
+    <option value="Civil">Civil</option>
+    <option value="Electrical">Electrical</option>
+</select>
+
+
+        </div>
+    </div>
 </div>
 
-<div class="col-12 d-grid">
+<div class="text-center">
     <button class="btn btn-primary" type="submit">Submit</button>
 </div>
