@@ -247,18 +247,18 @@ exports.deleteproject = (req, res) => {
 
 // Edit user
 exports.addmembers = (req, res) => {
-  const { studentName, department } = req.body;
-  const projectId = req.params.id; // Assuming project ID is available in the URL parameters
+  const { student_name, department,projectId} = req.body;
+ // Assuming project ID is available in the URL parameters
 
   // Check if all required fields are present
-  if (!projectId || !studentName || !department) {
+  /*if (!projectId || !student_name || !department) {
     return res.status(400).send('Bad Request: Missing required fields');
-  }
+  }*/
 
   // Insert the student's name and department into the database
   connection.query(
     'INSERT INTO Team_Details (project_id, student_name, department) VALUES (?, ?, ?)',
-    [projectId, studentName, department],
+    [projectId, student_name, department],
     (err, result) => {
       if (err) {
         console.error('Error inserting student details:', err);
@@ -276,10 +276,8 @@ exports.addmembers = (req, res) => {
 exports.addmember = (req, res) => {
   connection.query('SELECT * FROM Team_Details WHERE id = ?', [req.params.id], (err, rows) => {
     if (!err) {
-      connection.query('SELECT * FROM Student_Details', (err, stdde) => {
         const id = req.params.id;
-        res.render('add-member', { id , stdde });
-      })
+        res.render('add-member', {id});
     } else {
       console.log(err);
     }
