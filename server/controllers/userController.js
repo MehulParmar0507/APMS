@@ -128,13 +128,31 @@ exports.dologin = (req, res) => {
               res.render('login', { alert: 'Username and password not matched!' });
           }
       });
-  } else {
-      // If role selected is not admin, render login page with error message
-      res.render('login', { alert: 'You are not authorized to access the admin panel.' });
-  }
+  } else if (selectedRole === 'student') {
+    // If role selected is student, redirect to student dashboard or homepage
+    res.redirect('/homePage'); // Adjust the route as per your application's routes
+} else {
+    // If role selected is not admin or student, render login page with error message
+    res.render('login', { alert: 'Invalid role selected!' });
+}
 };
 
-
+exports.homePage = (req, res) => {
+  connection.query('SELECT * FROM Project_Details', (err, rows) => {
+    if (!err) {
+      // Format dates before passing to the template
+      rows.forEach(row => {
+        row.Project_Date = moment(row.Project_Date).format('DD MMM YYYY');
+      });
+      
+      let removedUser = req.query.removed;
+      res.render('homePage', { rows, removedUser });
+    } else {
+      console.log(err);
+    }
+    console.log('The data from Project Details table: \n', rows);
+  });
+};
 
 // Add new user
 exports.create = (req, res) => {

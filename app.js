@@ -30,6 +30,7 @@ app.use(express.static('public'));
 app.engine('.hbs', exphbs.engine( {extname: '.hbs',defaultLayout:"main" }));
 app.set('view engine', 'hbs');
 
+
 // Connection Pool
 // You don't need the connection here as we have it in userController
 let connection = mysql.createConnection({
@@ -42,5 +43,6 @@ let connection = mysql.createConnection({
 
 //const routes = require('./server/routes/user');
 app.use('/', adminRoutes);
+app.use('/homePage', studentRoutes);
 
 app.listen(port, () => console.log(`Listening on port ${port}`));
