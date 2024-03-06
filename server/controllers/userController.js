@@ -111,19 +111,30 @@ exports.form = (req, res) => {
 
 // Add new user
 exports.dologin = (req, res) => {
-  const {email, password} = req.body;
-  connection.query('SELECT * FROM login WHERE Email = ? and stu_password = ?', [email, password], (err, rows) => {
-    if (!err) {
-      if(rows.length != 0){
-        res.redirect('/');
-      }else{
-        res.render('login',{ alert: 'Username and Password not matched!' });
-      } 
-    } else {
-      console.log(err);
-    }
-  });
-}
+  const { email, password, role } = req.body;
+  const selectedRole = Array.isArray(role) ? role[1] : role;
+
+  // Validate email and password if necessary
+
+  // Check if role selected is admin
+  if (selectedRole === 'admin') {
+      // Query your database to validate admin credentials
+      connection.query('SELECT * FROM login WHERE Email = ? AND stu_password = ?', [email, password], (err, rows) => {
+          if (!err && rows.length > 0) {
+              // If admin credentials are valid, redirect to admin panel
+              res.redirect('/');
+          } else {
+              // If admin credentials are invalid, render login page with error message
+              res.render('login', { alert: 'Username and password not matched!' });
+          }
+      });
+  } else {
+      // If role selected is not admin, render login page with error message
+      res.render('login', { alert: 'You are not authorized to access the admin panel.' });
+  }
+};
+
+
 
 // Add new user
 exports.create = (req, res) => {
