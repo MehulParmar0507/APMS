@@ -23,6 +23,7 @@ router.get('/deleteproject/:id', userController.deleteproject);
 router.get('/viewstudent/:id', userController.viewstudent);
 router.get('/editproject/:id', userController.editproject);
 router.get('/homePage', userController.homePage);
-router.get
+router.get('/homeForGuide',userController.homeForGuide);
+router.get('/view-user-student/:id',userController.viewUserStudent)
 
 module.exports = router;

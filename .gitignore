@@ -1,2 +1,5 @@
 node_modules
 npm i body-parser dotenv express express-handlebars mysql mysql2
+# <a href="/deletemember/{{this.ID}}/{{this.project_id}}" class="btn btn-danger">Delete</a> <a href="/viewstudent/{{this.S_ID}}" class="btn btn-primary">Std Details</a>
+
+#for delete and std details 

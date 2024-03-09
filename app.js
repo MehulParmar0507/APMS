@@ -11,8 +11,7 @@ const port = process.env.PORT || 5000;
 
 //Routes based on different roles
 const adminRoutes = require('./server/routes/user');
-const studentRoutes = require('./server/routes/Student');
-const guideRoutes = require('./server/routes/Guide');
+
 
 // Parsing middleware
 // Parse application/x-www-form-urlencoded
@@ -43,6 +42,6 @@ let connection = mysql.createConnection({
 
 //const routes = require('./server/routes/user');
 app.use('/', adminRoutes);
-app.use('/homePage', studentRoutes);
+//app.use('/homePage', studentRoutes);
 
 app.listen(port, () => console.log(`Listening on port ${port}`));

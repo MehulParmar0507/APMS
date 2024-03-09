@@ -131,7 +131,10 @@ exports.dologin = (req, res) => {
   } else if (selectedRole === 'student') {
     // If role selected is student, redirect to student dashboard or homepage
     res.redirect('/homePage'); // Adjust the route as per your application's routes
-} else {
+} else if (selectedRole === 'guide') {
+  // If role selected is student, redirect to student dashboard or homepage
+  res.redirect('/homeForGuide'); // Adjust the route as per your application's routes
+}else {
     // If role selected is not admin or student, render login page with error message
     res.render('login', { alert: 'Invalid role selected!' });
 }
@@ -247,7 +250,7 @@ exports.deleteproject = (req, res) => {
 
 // Edit user
 exports.addmembers = (req, res) => {
-  const { student_name, department,projectId} = req.body;
+  const { student_name, department,projectId,Email} = req.body;
  // Assuming project ID is available in the URL parameters
 
   // Check if all required fields are present
@@ -257,8 +260,8 @@ exports.addmembers = (req, res) => {
 
   // Insert the student's name and department into the database
   connection.query(
-    'INSERT INTO Team_Details (project_id, student_name, department) VALUES (?, ?, ?)',
-    [projectId, student_name, department],
+    'INSERT INTO Team_Details (project_id, student_name, department,Email) VALUES (?, ?, ?, ?)',
+    [projectId, student_name, department,Email],
     (err, result) => {
       if (err) {
         console.error('Error inserting student details:', err);
@@ -335,3 +338,50 @@ exports.viewalls = (req, res) => {
     console.log('The data from result table: \n', rows);
   });
 }
+
+exports.viewUserStudent = (req, res) => {
+  connection.query('SELECT * FROM Project_Details WHERE Project_id = ?', [req.params.id], (err, rows) => {
+    if (!err) {
+      // Format dates before passing to the template
+      rows.forEach(row => {
+        row.Project_Date = moment(row.Project_Date).format('DD MMM YYYY');
+      });
+
+      const id = { id : rows[0].Project_id };
+      connection.query('SELECT * FROM Team_Details WHERE project_id = ?', [req.params.id], (err, tdrow) => {
+        if (!err) {
+          // Format dates in the tdrow data as well, if necessary
+          tdrow.forEach(row => {
+            // Assuming there's a Project_Date field in Team_Details
+            row.Project_Date = moment(row.Project_Date).format('DD MMM YYYY');
+          });
+
+          res.render('view-user-student', { rows , id, tdrow });
+        } else {
+          console.log(err);
+          res.status(500).send('Internal Server Error');
+        }
+      });
+    } else {
+      console.log(err);
+      res.status(500).send('Internal Server Error');
+    }
+  });
+}
+
+exports.homeForGuide = (req, res) => {
+  connection.query('SELECT * FROM Project_Details', (err, rows) => {
+    if (!err) {
+      // Format dates before passing to the template
+      rows.forEach(row => {
+        row.Project_Date = moment(row.Project_Date).format('DD MMM YYYY');
+      });
+      
+      let removedUser = req.query.removed;
+      res.render('homeForGuide', { rows, removedUser });
+    } else {
+      console.log(err);
+    }
+    console.log('The data from Project Details table: \n', rows);
+  });
+};

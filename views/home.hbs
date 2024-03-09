@@ -1,3 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Page Title</title>
+    <!-- Include Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Include Custom CSS -->
+    <link href="/public/css/main.css" rel="stylesheet">
+</head>
+<body>
+
 {{#if removedUser}}
 <div class="alert alert-success alert-dismissible fade show" role="alert">
   Student has been removed.
@@ -14,9 +27,11 @@
 
 <div class="row">
   <div class="col-6">
-    <h1>Academic Project Management System</h1>
+   <h1 style="font-family: 'Roboto', sans-serif; font-size: 36px; font-weight: bold; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);color: #653418; margin-bottom: 20px; ">ACADEMIC PROJECTS</h1>
+    <br>
   </div>
   <div class="col-6 d-flex justify-content-end">
+    <br>
     <a href="/addproject" type="button" class="btn btn-primary align-self-center">Add Project</a>
   </div>
 </div>
@@ -31,20 +46,23 @@
     </tr>
   </thead>
   <tbody>
-
     {{#each rows}}
     <tr>
       <th scope="row">{{this.Project_id}}</th>
       <td>{{this.project_name}}</td>
       <td>{{this.Project_Guide}}</td>
       <td class="text-end">
-        <a href="/viewproject/{{this.Project_id}}" type="button" class="btn btn-light btn-small"><i class="bi bi-eye"></i> View</a>
-        <a href="/editproject/{{this.Project_id}}" type="button" class="btn btn-light btn-small"><iclass="bi bi-pencil"></i>Edit</a>
+        <a href="/view-user-student/{{this.Project_id}}" type="button" class="btn btn-light btn-small" style="font-size: 14px; padding: 8px 16px; background-color: #0c0d35; color: #fff; border-color: #070707;">
+    <i class="bi bi-eye"></i> View
+  </a>
+        <a href="/view-user-student/{{this.Project_id}}" type="button" class="btn btn-light btn-small" style="font-size: 16px; padding: 8px 16px; background-color: #f6f6fd; color: #3d2d2d; border-color: #070707;"></i>Edit</a>
         {{!-- <a href="/addresult/{{this.id}}" type="button" class="btn btn-light btn-small"><iclass="bi bi-pencil"></i>Add Result</a> --}}
-        <a href="/deleteproject/{{this.Project_id}}" type="button" class="btn btn-light btn-small"><i class="bi bi-person-x"></i> Delete</a>
+        <a href="/deleteproject/{{this.Project_id}}" type="button" class="btn btn-light btn-small" style="font-size: 17px; padding: 8px 16px; background-color: #f35730; color: #f4efef; border-color: #fbf8f8;"><i class="bi bi-person-x"></i> Delete</a>
       </td>
     </tr>
     {{/each}}
-
   </tbody>
 </table>
+
+</body>
+</html>
