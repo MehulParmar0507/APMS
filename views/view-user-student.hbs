@@ -1,6 +1,6 @@
 <nav aria-label="breadcrumb">
   <ol class="breadcrumb">
-    <li class="breadcrumb-item"><a href="/">Home</a></li>
+    <li class="breadcrumb-item"><a href="/homePage">Home</a></li>
     <li class="breadcrumb-item active" aria-current="page">View Project</li>
   </ol>
 </nav>
@@ -48,7 +48,8 @@
           <tr>
             <td>{{this.student_name}}</td>
             <td>{{this.Department}}</td>
-            <td><a href="/deletemember/{{this.ID}}/{{this.project_id}}" class="btn btn-danger">Delete</a> <a href="/viewstudent/{{this.S_ID}}" class="btn btn-primary">Std Details</a></td>
+            <td>{{this.Email}}</td>
+    
           </tr>
           {{/each}}
         </tbody>
