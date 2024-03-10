@@ -172,9 +172,9 @@ exports.create = (req, res) => {
 }
 
 exports.editprojects = (req, res) => {
-  const { project_id, project_name, Project_Date, Project_Link, Project_Guide } = req.body;
+  const { project_id, Project_name, Project_Date, Project_link, Project_Guide } = req.body;
 
-  connection.query('update Project_Details SET project_name = ?, Project_Date = ?, Project_Link = ?, Project_Guide = ? WHERE project_id = ?', [project_name, Project_Date, Project_Link, Project_Guide, project_id], (err, rows) => {
+  connection.query('update Project_Details SET Project_name = ?, Project_Date = ?, Project_link = ?, Project_Guide = ? WHERE project_id = ?', [Project_name, Project_Date, Project_link, Project_Guide, project_id], (err, rows) => {
     if (!err) {
       res.redirect('/');
     } else {
@@ -430,7 +430,7 @@ exports.addgrade = (req, res) => {
 }
 
 exports.addgrades = (req, res) => {
-  const { p_status, p_grade} = req.body;
+  const { ids,p_status, p_grade} = req.body;
  // Assuming project ID is available in the URL parameters
 
   // Check if all required fields are present
@@ -440,8 +440,8 @@ exports.addgrades = (req, res) => {
 
   // Insert the student's name and department into the database
   connection.query(
-    'INSERT INTO grade (p_status, p_grade,) VALUES (?, ?)',
-    [id, p_status, p_grade],
+    'UPDATE project_details SET  p_status = ?, p_grade = ?  WHERE Project_id = '+ids+'',
+    [ p_status, p_grade],
     (err, result) => {
       if (err) {
         console.error('Error inserting student details:', err);
@@ -449,7 +449,7 @@ exports.addgrades = (req, res) => {
       }
       
       // Redirect or render a success page if needed
-      res.redirect(`/viewproject/${id}`);
+      res.redirect(`/view-user-guide/${ids}`);
     }
   );
 };

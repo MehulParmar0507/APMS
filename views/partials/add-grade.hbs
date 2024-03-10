@@ -1,0 +1,57 @@
+
+<div class="row">
+    <div class="col-md-3">
+        <div class="form-group">
+            <br>
+            <label for="p_status">Project Id:</label>
+            
+              <input type="text" value = "{{id}}" name="ids" readonly>
+        </div>
+    </div>
+    <div class="col-md-3">
+        <div class="form-group">
+            <br>
+            <label for="p_status">Project Status:</label>
+            <select name="p_status" id="p_status" class="form-select">
+                <option value="" disabled selected style="display: none;">Select</option>
+                <option value="Incomplete">Incomplete</option>
+                <option value="Complete">Complete</option>
+                
+            </select>
+        </div>
+    </div>
+    
+    <div class="col-md-6">
+        <div class="form-group">
+            <br>
+            <label for="p_grade">Grade:</label>
+            <select name="p_grade" id="p_grade" class="form-select">
+                <option value="" disabled selected style="display: none;">Select</option>
+                <option value="A">A</option>
+                <option value="B">B</option>
+                <option value="C">C</option>
+                <option value="D">D</option>
+                
+            </select>
+        </div>
+    </div>
+  
+</div>
+
+<br>
+<div class="text-center">
+    <button class="btn btn-primary" type="submit" style="background-color: #0e1539; border-radius: 15px;">Submit</button>
+</div>
+
+
+{{!-- <div style="display: flex;  justify-content: flex-end; margin-right: 510px">
+  <button type="submit" style="background-color: #0e1539; /* Green */
+    border: none;
+    color: white;
+    padding: 10px 20px; /* Adjust padding as needed */
+    text-align: center;
+    text-decoration: none;
+    font-size: 14px; /* Adjust font size */
+    cursor: pointer;
+    border-radius: 15px;">Submit</button>
+</div> --}}

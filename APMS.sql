@@ -72,3 +72,12 @@ VALUES
 INSERT INTO Login(First_Name,Last_Name,Email,stu_password,Gender)
 VALUES
 ("Hetal","Chauhan","hetalchauhan02@gmail.com","hetal@0210","Male");
+INSERT INTO Login(First_Name,Last_Name,Email,stu_password,Gender)
+VALUES
+("Preeti","Sharma","Admin@gmail.com","ISSBT","Female");
+INSERT INTO Login(First_Name,Last_Name,Email,stu_password,Gender)
+VALUES
+("Preeti","Sharma","student@gmail.com","ICOET","Female");
+INSERT INTO Login(First_Name,Last_Name,Email,stu_password,Gender)
+VALUES
+("Preeti","Sharma","guide@gmail.com","ISSBT","Female");
