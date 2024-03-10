@@ -417,3 +417,41 @@ exports.viewUserGuide  = (req, res) => {
   });
 }
 
+exports.addgrade = (req, res) => {
+  connection.query('SELECT * FROM grade WHERE id = ?', [req.params.id], (err, rows) => {
+    if (!err) {
+        const id = req.params.id;
+        res.render('add-grade', {id});
+    } else {
+      console.log(err);
+    }
+    console.log('The data from student_details table: \n', rows);
+  });
+}
+
+exports.addgrades = (req, res) => {
+  const { p_status, p_grade} = req.body;
+ // Assuming project ID is available in the URL parameters
+
+  // Check if all required fields are present
+  /*if (!projectId || !student_name || !department) {
+    return res.status(400).send('Bad Request: Missing required fields');
+  }*/
+
+  // Insert the student's name and department into the database
+  connection.query(
+    'INSERT INTO grade (p_status, p_grade,) VALUES (?, ?)',
+    [id, p_status, p_grade],
+    (err, result) => {
+      if (err) {
+        console.error('Error inserting student details:', err);
+        return res.status(500).send('Internal Server Error');
+      }
+      
+      // Redirect or render a success page if needed
+      res.redirect(`/viewproject/${id}`);
+    }
+  );
+};
+
+

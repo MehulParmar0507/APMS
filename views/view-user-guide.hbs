@@ -29,6 +29,14 @@
             <th scope="row">Project Date:</th>
             <td>{{this.Project_Date}}</td>
           </tr>
+          <tr>
+            <th scope="row">Project Status:</th>
+            <td>{{this.p_status}}</td>
+          </tr>
+          <tr>
+            <th scope="row">Project Grade:</th>
+            <td>{{this.p_grade}}</td>
+          </tr>
         </tbody>
       </table>
     </div>
@@ -54,7 +62,7 @@
           {{/each}}
         </tbody>
       </table>
-      
+      <a href="/addgrades/{{this.id.id}}" class="btn btn-primary">Add Grades</a>
     </div>
   </div>
 </div>

@@ -25,6 +25,8 @@ router.get('/editproject/:id', userController.editproject);
 router.get('/homePage', userController.homePage);
 router.get('/homeForGuide',userController.homeForGuide);
 router.get('/view-user-student/:id',userController.viewUserStudent);
-router.get('/view-user-guide/:id', userController.viewUserGuide)
+router.get('/view-user-guide/:id', userController.viewUserGuide);
+router.get('/addgrades/:id', userController.addgrade);
+router.post('/addgrades', userController.addgrades);
 
 module.exports = router;
