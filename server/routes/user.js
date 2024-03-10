@@ -24,6 +24,7 @@ router.get('/viewstudent/:id', userController.viewstudent);
 router.get('/editproject/:id', userController.editproject);
 router.get('/homePage', userController.homePage);
 router.get('/homeForGuide',userController.homeForGuide);
-router.get('/view-user-student/:id',userController.viewUserStudent)
+router.get('/view-user-student/:id',userController.viewUserStudent);
+router.get('/view-user-guide/:id', userController.viewUserGuide)
 
 module.exports = router;
