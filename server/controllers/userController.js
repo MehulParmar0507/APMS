@@ -418,7 +418,7 @@ exports.viewUserGuide  = (req, res) => {
 }
 
 exports.addgrade = (req, res) => {
-  connection.query('SELECT * FROM grade WHERE id = ?', [req.params.id], (err, rows) => {
+  connection.query('SELECT * FROM project_details WHERE Project_id = ?', [req.params.id], (err, rows) => {
     if (!err) {
         const id = req.params.id;
         res.render('add-grade', {id});
