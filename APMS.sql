@@ -14,7 +14,7 @@ CREATE TABLE Project_Details(
 
 INSERT INTO Project_Details(Project_id,project_name,Project_Date,Project_Link,Project_Guide)
 VALUES
-(1,"Academic Project Management System","24-02-24","https://AcademicProjectManagementSystem.com","A.T.Bhole");
+(1,"Academic Project Management System","16-04-24","https://AcademicProjectManagementSystem.com","A.T.Bhole");
 
 
 CREATE TABLE Team_Details(
